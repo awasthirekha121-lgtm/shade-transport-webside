@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Shade Transport Private Limited | Vue.js 3 Edition | 24/7 Transport &amp; Port Network</title>
+  <meta name="description" content="Official Vue.js 3 implementation for Shade Transport Private Limited. 24/7 service and assistance, pan-India transport connecting Lucknow to major cities and seaports." />
+  <meta name="theme-color" content="#24353b" />
+
+  <link rel="icon" type="image/png" href="assets/images/shade-logo-mark.png" sizes="256x256" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- Vue.js 3 Production CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+</head>
+<body>
+  <div id="vue-app">
+    <!-- Topline Bar -->
+    <div class="topline">
+      <div class="topline-left">
+        <span class="topline-location">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Lucknow, Uttar Pradesh
+        </span>
+        <span class="topline-badge">CIN: U63030UP2016PTC084403</span>
+      </div>
+      <div class="topline-center">
+        <span class="pulse-dot"></span>
+        <strong>24/7 DISPATCH DESK &amp; HIGHWAY BREAKDOWN ASSISTANCE ACTIVE</strong>
+      </div>
+      <div class="topline-right">
+        <a href="tel:+918115137699" class="topline-phone">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          24/7 Hotline: +91 8115137699
+        </a>
+        <div class="topline-switcher">
+          <span>Framework:</span>
+          <a href="index.html" title="Switch to React 18 SPA">React</a>
+          <a href="vue.html" class="active" title="Viewing Vue.js 3 SPA">Vue.js</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Sticky Header -->
+    <header class="site-header">
+      <a href="#top" class="brand" aria-label="Shade Transport Home">
+        <img src="assets/images/shade-logo-mark.png" alt="Shade Transport Logo" class="brand-logo-mark" width="40" height="36" />
+        <div class="brand-text">
+          <span class="brand-name">shade<span>transport</span></span>
+          <span class="brand-tagline">Private Limited · Lucknow</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" aria-label="Main Navigation">
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#fleet" class="nav-link">Our Fleet</a>
+        <a href="#journey" class="nav-link">India Map &amp; Journey</a>
+        <a href="#assistance" class="nav-link">24/7 Assistance</a>
+        <a href="#reviews" class="nav-link">Client Reviews</a>
+        <a href="#contact" class="nav-link">Contact &amp; Hubs</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="tel:+918115137699" class="nav-cta" style="background: #24353b;">
+          <span class="pulse-dot" style="width: 6px; height: 6px;"></span>
+          24/7 Support: 8115137699
+        </a>
+        <button 
+          class="mobile-menu-toggle" 
+          @click="mobileMenuOpen = true"
+          aria-label="Open mobile menu"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Mobile Drawer -->
+    <div :class="['mobile-drawer-overlay', { open: mobileMenuOpen }]" @click="mobileMenuOpen = false"></div>
+    <aside :class="['mobile-drawer', { open: mobileMenuOpen }]">
+      <div class="drawer-header">
+        <span class="brand-name">shade<span>transport</span></span>
+        <button @click="mobileMenuOpen = false" style="font-size: 1.5rem; color: var(--ink);">×</button>
+      </div>
+      <nav class="drawer-nav">
+        <a href="#services" @click="mobileMenuOpen = false">What We Move</a>
+        <a href="#fleet" @click="mobileMenuOpen = false">Our Fleet</a>
+        <a href="#journey" @click="mobileMenuOpen = false">India Map &amp; Ports</a>
+        <a href="#assistance" @click="mobileMenuOpen = false">24/7 Service &amp; Assistance</a>
+        <a href="#reviews" @click="mobileMenuOpen = false">Google Reviews</a>
+        <a href="#contact" @click="mobileMenuOpen = false">Contact &amp; Map</a>
+      </nav>
+      <div class="drawer-footer">
+        <a href="tel:+918115137699" class="button button-dark" style="width: 100%; margin-bottom: 10px;">Call 24/7: +91 8115137699</a>
+        <a href="https://wa.me/918115137699" target="_blank" rel="noopener noreferrer" class="button button-whatsapp" style="width: 100%;">WhatsApp 24/7 Desk</a>
+      </div>
+    </aside>
+
+    <!-- Hero Section -->
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <div class="eyebrow">
+          <span class="eyebrow-line"></span>
+          24/7 SERVICE &amp; ASSISTANCE · LUCKNOW TO PAN-INDIA
+        </div>
+        <h1 class="hero-title">
+          Transportation<br />
+          services in<br />
+          <em>Lucknow.</em>
+        </h1>
+        <p class="hero-intro">
+          Looking for goods transport or movers and packers in Lucknow? Shade Transport Private Limited provides round-the-clock 24/7 full truckloads (FTL), part loads (PTL), container shipping, and household relocation across India's highways, cities, and ports.
+        </p>
+        <div class="hero-actions">
+          <a href="#journey" class="button button-dark">Explore India Map &amp; Ports →</a>
+          <a href="https://wa.me/918115137699" class="button button-whatsapp" target="_blank" rel="noopener noreferrer">
+            Chat on WhatsApp (24/7)
+          </a>
+          <a href="tel:+918115137699" class="button button-light">Direct Call: 8115137699</a>
+        </div>
+        <div className="hero-footnote">
+          <span className="pin-dot"></span>
+          Rooted in Lucknow · 24/7 Operations Desk coordinating fleet across all 28 states &amp; major seaports.
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <img src="assets/images/shade-container-truck.jpg" alt="Commercial container freight truck" width="1024" height="680" />
+        <div class="image-wash"></div>
+        <div class="visual-index"><span>24/7</span> / ACTIVE FLEET NETWORK</div>
+        <div class="visual-caption">
+          <span class="caption-rule"></span>
+          <p>Non-stop logistics connectivity between Lucknow and major commercial cities, dry ports, and sea terminals.</p>
+        </div>
+        <div class="route-stamp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>
+          <span>CENTRAL HUB</span>
+          <strong>Lucknow, UP</strong>
+          <small style="font-family: var(--mono); font-size: 0.65rem; color: var(--clay);">26°50′N / 80°56′E</small>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Banner -->
+    <section class="stats-strip">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="stat-number">24/7</span>
+          <span class="stat-label">Service &amp; Highway Assistance</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">28+</span>
+          <span class="stat-label">States &amp; UTs Connected</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">12</span>
+          <span class="stat-label">Vehicle Categories</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">4.5★</span>
+          <span class="stat-label">60+ Google Reviews</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="section-pad" id="services">
+      <div class="container-boxed">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-line"></span> SERVICES WE OFFER</div>
+            <h2>Full Transport Solutions.<br /><em>Pan-India Network.</em></h2>
+          </div>
+          <p class="heading-aside">
+            Comprehensive transport logistics from Lucknow to every state in India, with real-time 24/7 assistance and transparent quotes.
+          </p>
+        </div>
+
+        <div class="services-grid-main">
+          <article class="service-card">
+            <div class="service-header-row">
+              <span class="service-index">01 / FTL</span>
+              <div class="service-icon-box">🚚</div>
+            </div>
+            <h3 class="service-title">Full Truckload (FTL)</h3>
+            <p class="service-desc">Dedicated direct trucks from Lucknow to any destination in India without intermediate offloading.</p>
+            <a href="https://wa.me/918115137699" target="_blank" class="service-link">Book FTL via WhatsApp →</a>
+          </article>
+
+          <article class="service-card">
+            <div class="service-header-row">
+              <span class="service-index">02 / MOVERS</span>
+              <div class="service-icon-box">📦</div>
+            </div>
+            <h3 class="service-title">Movers &amp; Packers</h3>
+            <p class="service-desc">Complete 5-layer bubble packing, safe transit, furniture assembly, and doorstep unpacking.</p>
+            <a href="https://wa.me/918115137699" target="_blank" class="service-link">Plan Home Move →</a>
+          </article>
+
+          <article class="service-card">
+            <div class="service-header-row">
+              <span class="service-index">03 / PTL</span>
+              <div class="service-icon-box">📑</div>
+            </div>
+            <h3 class="service-title">Part Truckload (PTL)</h3>
+            <p class="service-desc">Economical consolidated cargo for smaller consignments with daily scheduled departures.</p>
+            <a href="https://wa.me/918115137699" target="_blank" class="service-link">Book Parcel Freight →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fleet Explorer (Vue 3 Filtered) -->
+    <section class="fleet-section section-pad" id="fleet">
+      <div class="container-boxed">
+        <div class="fleet-heading-wrapper">
+          <div>
+            <div class="eyebrow eyebrow-light"><span class="eyebrow-line"></span> OUR FLEET · 12 VEHICLE CLASSES</div>
+            <h2>Our Fleet Categories.<br /><em>Vue 3 Explorer.</em></h2>
+          </div>
+          <p style="max-width: 420px; color: #c9d2d0; font-size: 0.95rem;">
+            Click on any vehicle category to open detailed dimensions, payload capacities, and WhatsApp booking.
+          </p>
+        </div>
+
+        <div class="fleet-filters">
+          <button :class="['filter-btn', { active: activeFleetFilter === 'all' }]" @click="activeFleetFilter = 'all'">All Vehicles</button>
+          <button :class="['filter-btn', { active: activeFleetFilter === 'mini' }]" @click="activeFleetFilter = 'mini'">Mini Trucks</button>
+          <button :class="['filter-btn', { active: activeFleetFilter === 'light' }]" @click="activeFleetFilter = 'light'">LCV Trucks</button>
+          <button :class="['filter-btn', { active: activeFleetFilter === 'medium' }]" @click="activeFleetFilter = 'medium'">Medium Goods</button>
+          <button :class="['filter-btn', { active: activeFleetFilter === 'container' }]" @click="activeFleetFilter = 'container'">Containers &amp; Movers</button>
+          <button :class="['filter-btn', { active: activeFleetFilter === 'specialized' }]" @click="activeFleetFilter = 'specialized'">Specialized</button>
+        </div>
+
+        <div class="fleet-grid">
+          <article 
+            v-for="veh in filteredFleet" 
+            :key="veh.id" 
+            class="fleet-card"
+            @click="selectedVehicle = veh"
+          >
+            <div class="fleet-card-meta">
+              <span>{{ veh.index }}</span>
+              <span>🚚</span>
+            </div>
+            <h3 class="fleet-card-title">{{ veh.title }}</h3>
+            <p class="fleet-card-desc">{{ veh.desc }}</p>
+            <span class="fleet-card-fit">{{ veh.badge }}</span>
+            <div class="fleet-card-cta">
+              <span>Payload: {{ veh.capacity }}</span>
+              <span>View Details →</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal for Vehicle Details -->
+    <div v-if="selectedVehicle" class="modal-overlay open" @click="selectedVehicle = null">
+      <div class="modal-content" @click.stop>
+        <div class="modal-header">
+          <div>
+            <span style="font-family: var(--mono); font-size: 0.75rem; color: var(--ochre);">VEHICLE SPECIFICATION</span>
+            <h3 style="font-size: 1.4rem; color: #fff; margin: 0;">{{ selectedVehicle.title }}</h3>
+          </div>
+          <button class="modal-close" @click="selectedVehicle = null">✕</button>
+        </div>
+        <div class="modal-body">
+          <p style="font-size: 0.95rem; color: var(--ink); margin-bottom: 16px;">{{ selectedVehicle.desc }}</p>
+          <div class="modal-specs-grid">
+            <div class="spec-cell">
+              <strong>Payload Capacity</strong>
+              <span>{{ selectedVehicle.capacity }}</span>
+            </div>
+            <div class="spec-cell">
+              <strong>Dimensions</strong>
+              <span>{{ selectedVehicle.dimensions }}</span>
+            </div>
+            <div class="spec-cell">
+              <strong>Recommended For</strong>
+              <span>{{ selectedVehicle.bestFor }}</span>
+            </div>
+            <div class="spec-cell">
+              <strong>Routes</strong>
+              <span>{{ selectedVehicle.routes }}</span>
+            </div>
+          </div>
+          <div style="display: flex; gap: 12px; margin-top: 20px;">
+            <a 
+              :href="'https://wa.me/918115137699?text=Hi%20Shade%20Transport%2C%20I%20want%20to%20book%20' + encodeURIComponent(selectedVehicle.title)"
+              target="_blank"
+              class="button button-whatsapp"
+              style="flex: 1;"
+            >
+              Book this Vehicle via WhatsApp (24/7)
+            </a>
+            <button class="button button-dark" @click="selectedVehicle = null">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- India Map & Journey Section -->
+    <section class="journey-section" id="journey">
+      <div class="container-boxed">
+        <div class="section-heading" style="border-bottom-color: rgba(255, 255, 255, 0.1);">
+          <div>
+            <div class="eyebrow eyebrow-light"><span class="eyebrow-line"></span> OUR JOURNEY &amp; PAN-INDIA NETWORK</div>
+            <h2 style="color: #fff;">
+              From Lucknow Central Hub.<br />
+              <em style="color: var(--ochre);">Connecting Major Cities &amp; Seaports.</em>
+            </h2>
+          </div>
+          <p style="max-width: 440px; color: #c9d2d0; font-size: 0.95rem;">
+            Connecting Lucknow to all 28 states, premier container seaports, and industrial centers.
+          </p>
+        </div>
+
+        <div class="india-map-wrapper">
+          <div class="map-control-bar">
+            <div class="map-tabs">
+              <button :class="['map-tab-btn', { active: activeMapFilter === 'all' }]" @click="activeMapFilter = 'all'">All Connected ({{ networkNodes.length }})</button>
+              <button :class="['map-tab-btn', { active: activeMapFilter === 'ports' }]" @click="activeMapFilter = 'ports'">⚓ Major Seaports &amp; Dry Ports</button>
+              <button :class="['map-tab-btn', { active: activeMapFilter === 'metros' }]" @click="activeMapFilter = 'metros'">🏢 Commercial Metros</button>
+              <button :class="['map-tab-btn', { active: activeMapFilter === 'regional' }]" @click="activeMapFilter = 'regional'">🛣️ Regional Expressways</button>
+            </div>
+            <div class="map-legend">
+              <span class="legend-tag"><span class="legend-dot-lucknow"></span> Lucknow HQ</span>
+              <span class="legend-tag"><span class="legend-dot-city"></span> Major City</span>
+              <span class="legend-tag"><span class="legend-dot-port"></span> Seaport / Port</span>
+            </div>
+          </div>
+
+          <div class="map-svg-container">
+          <svg viewBox="150 70 600 580" class="svg-map-frame" role="img" aria-label="India Transport Network Map">
+            <!-- Accurate India Landmass Outline -->
+            <path
+              d="
+                M 350 95 L 370 88 L 395 92 L 415 100 L 430 112 L 450 108 L 470 115
+                L 490 110 L 510 118 L 530 112 L 555 110 L 580 108 L 610 112 L 635 108
+                L 660 115 L 685 118 L 710 125 L 730 138 L 748 155 L 755 175 L 752 198
+                L 740 215 L 745 235 L 735 255 L 720 265 L 700 262 L 680 272 L 665 285
+                L 650 310 L 635 340 L 618 375 L 600 408 L 580 445 L 558 480 L 535 515
+                L 510 548 L 485 578 L 460 605 L 438 625 L 420 638 L 408 645 L 400 638
+                L 390 622 L 375 600 L 358 572 L 342 542 L 325 508 L 308 472 L 292 438
+                L 275 402 L 258 365 L 242 332 L 228 298 L 218 268 L 215 242 L 222 220
+                L 235 205 L 252 192 L 268 185 L 280 170 L 288 152 L 300 135 L 320 115
+                L 338 100 Z
+                M 408 645 Q 415 655 420 650 Q 425 648 420 638 Z
+              "
+              fill="rgba(36, 53, 59, 0.5)"
+              stroke="rgba(210, 164, 94, 0.45)"
+              stroke-width="1.8"
+              stroke-linejoin="round"
+            />
+            <!-- Routes -->
+            <g v-for="node in filteredMapNodes.filter(n => n.id !== 'lucknow')" :key="'route-' + node.id">
+              <path 
+                :d="`M ${lucknowHub.x} ${lucknowHub.y} Q ${(lucknowHub.x + node.x) / 2} ${(lucknowHub.y + node.y) / 2} ${node.x} ${node.y}`"
+                fill="none"
+                :stroke="selectedNode && selectedNode.id === node.id ? '#38ef7d' : node.type === 'port' ? '#38ef7d' : '#d2a45e'"
+                :stroke-width="selectedNode && selectedNode.id === node.id ? '2.8' : '1.6'"
+                class="map-route"
+              />
+            </g>
+            <!-- Nodes -->
+            <g v-for="node in filteredMapNodes" :key="node.id" style="cursor: pointer;" @click="selectedNode = node">
+              <template v-if="node.type === 'hub'">
+                <circle :cx="node.x" :cy="node.y" r="8" fill="#bb563a" stroke="#ffffff" stroke-width="2.5" />
+                <rect :x="node.x - 52" :y="node.y - 32" width="104" height="20" rx="3" fill="#24353b" stroke="#bb563a" stroke-width="1.2" />
+                <text :x="node.x" :y="node.y - 18" text-anchor="middle" fill="#ffffff" font-family="var(--sans)" font-size="10.5" font-weight="700">★ LUCKNOW HQ</text>
+              </template>
+              <template v-else>
+                <rect v-if="node.type === 'port'" :x="node.x - 5" :y="node.y - 5" width="10" height="10" rx="2" fill="#38ef7d" stroke="#24353b" stroke-width="2" />
+                <circle v-else :cx="node.x" :cy="node.y" r="5" fill="#d2a45e" stroke="#24353b" stroke-width="2" />
+                <text :x="node.x + 8" :y="node.y + 4" :fill="node.type === 'port' ? '#9cf3be' : '#e5eae8'" font-family="var(--mono)" font-size="9">{{ node.type === 'port' ? '⚓ ' + node.name : node.name }}</text>
+              </template>
+            </g>
+          </svg>
+          </div><!-- end map-svg-container -->
+
+          <!-- Corridor Banner -->
+          <div v-if="selectedNode" class="corridor-info-banner">
+            <div class="corridor-info-left">
+              <span>CONNECTED CORRIDOR · {{ selectedNode.tag }}</span>
+              <strong>{{ selectedNode.name }}</strong>
+              <div style="color: #d1d8d6; font-size: 0.85rem; margin-top: 2px;">{{ selectedNode.corridor }}</div>
+            </div>
+            <div class="corridor-specs">
+              <div class="corridor-spec-item">
+                <small>Distance</small>
+                <strong>{{ selectedNode.distance }} km</strong>
+              </div>
+              <div class="corridor-spec-item">
+                <small>Transit Time</small>
+                <strong>{{ selectedNode.time }}</strong>
+              </div>
+            </div>
+            <a 
+              :href="'https://wa.me/918115137699?text=Hi%20Shade%20Transport%2C%20I%20am%20inquiring%20about%20transport%20to%20' + encodeURIComponent(selectedNode.name)"
+              target="_blank"
+              class="button button-clay"
+              style="padding: 9px 18px; font-size: 0.84rem;"
+            >
+              Inquire via WhatsApp (24/7)
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Team & Fleet Gallery -->
+    <section class="gallery-section" id="gallery">
+      <div class="container-boxed">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-line"></span> OUR PEOPLE, VEHICLES &amp; INFRASTRUCTURE</div>
+            <h2>Our Team &amp; Fleet.<br><em>Built for India.</em></h2>
+          </div>
+          <p class="heading-aside">
+            Meet our crew, explore our hub at Transport Nagar, and browse our full fleet of BS-VI certified Indian vehicles — from mini-loaders to multi-axle heavies.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+          <!-- Row 1 — Vehicles -->
+          <div class="gallery-card gallery-card--wide">
+            <div class="gallery-img-wrap">
+              <img src="assets/images/shade-container-truck.jpg" alt="Shade Transport 40ft container truck on highway" />
+              <span class="gallery-tag gallery-tag--fleet">40 FT CONTAINER TRUCK</span>
+            </div>
+            <div class="gallery-label">
+              <span class="gallery-label-icon">🚛</span>
+              <div>
+                <strong>Heavy Container Fleet</strong>
+                <span>Tata Prima · BharatBenz 1617 · Pan-India Permit</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="gallery-card">
+            <div class="gallery-img-wrap">
+              <img src="assets/images/tata-ace.jpg" alt="Tata Ace mini truck for city deliveries" />
+              <span class="gallery-tag gallery-tag--fleet">MINI TRUCK / ACE</span>
+            </div>
+            <div class="gallery-label">
+              <span class="gallery-label-icon">🚐</span>
+              <div>
+                <strong>Last-Mile Delivery</strong>
+                <span>Tata Ace · 750 kg · City Network</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="gallery-card">
+            <div class="gallery-img-wrap">
+              <img src="assets/images/eicher-lcv.jpg" alt="Eicher Pro LCV light commercial vehicle" />
+              <span class="gallery-tag gallery-tag--fleet">LCV / EICHER PRO</span>
+            </div>
+            <div class="gallery-label">
+              <span class="gallery-label-icon">🚚</span>
+              <div>
+                <strong>Light Commercial</strong>
+                <span>Eicher Pro 2095 · 5–7 Tonne</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 2 -->
+          <div class="gallery-card">
+            <div class="gallery-img-wrap">
+              <img src="assets/images/tata-signa.jpg" alt="Tata Signa multi-axle heavy truck" />
+              <span class="gallery-tag gallery-tag--fleet">MULTI-AXLE HEAVY</span>
+            </div>
+            <div class="gallery-label">
+              <span class="gallery-label-icon">🚜</span>
+              <div>
+                <strong>Multi-Axle Trucks</strong>
+                <span>Tata Signa 4423.S · 44 Tonne GVW</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="gallery-card gallery-card--wide">
+            <div class="gallery-img-wrap">
+              <img src="assets/images/shade-logistics-hub.jpg" alt="Shade Transport logistics hub Transport Nagar Lucknow" />
+              <span class="gallery-tag gallery-tag--hub">TRANSPORT NAGAR HUB</span>
+            </div>
+            <div class="gallery-label">
+              <span class="gallery-label-icon">🏭</span>
+              <div>
+                <strong>Logistics Hub &amp; Warehouse</strong>
+                <span>G-1/121, Transport Nagar Phase 2, Lucknow 226012</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 3 -->
+          <div class="gallery-card gallery-card--wide">
+            <div class="gallery-img-wrap">
+              <img src="assets/images/shade-packers-team.jpg" alt="Shade Transport professional packers and movers team" />
+              <span class="gallery-tag gallery-tag--team">OUR EXPERT CREW</span>
+            </div>
+            <div class="gallery-label">
+              <span class="gallery-label-icon">👷</span>
+              <div>
+                <strong>Certified Packers &amp; Movers Team</strong>
+                <span>Trained in 5-layer protective packing · 24/7 Available</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="gallery-card">
+            <div class="gallery-img-wrap">
+              <img src="assets/images/shade-road.jpg" alt="Shade Transport fleet on North Indian highway" />
+              <span class="gallery-tag gallery-tag--fleet">PAN-INDIA HIGHWAYS</span>
+            </div>
+            <div class="gallery-label">
+              <span class="gallery-label-icon">🛣️</span>
+              <div>
+                <strong>Fleet on the Move</strong>
+                <span>Lucknow ↔ Delhi · Mumbai · Kolkata · Bengaluru</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gallery CTA Strip -->
+        <div class="gallery-cta-strip">
+          <div class="gallery-cta-left">
+            <span class="gallery-cta-badge">🚛 25+ Vehicles</span>
+            <span class="gallery-cta-badge">👷 50+ Trained Staff</span>
+            <span class="gallery-cta-badge">📍 2 Lucknow Hubs</span>
+            <span class="gallery-cta-badge">⏰ 24/7 Operations</span>
+          </div>
+          <a href="tel:+918115137699" class="button button-primary">
+            Book a Vehicle Now →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 24/7 Service &amp; Assistance Section -->
+    <section class="assistance-section" id="assistance">
+      <div class="container-boxed">
+        <div class="assistance-badge-strip">
+          <span class="assistance-beacon"></span>
+          <span style="font-family: var(--mono); font-size: 0.78rem; color: var(--clay); font-weight: bold;">
+            ROUND-THE-CLOCK OPERATIONAL READINESS · 365 DAYS A YEAR
+          </span>
+        </div>
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-line"></span> 24/7 SERVICE &amp; ASSISTANCE</div>
+            <h2>Always on the road.<br /><em>Never stranded.</em></h2>
+          </div>
+          <p class="heading-aside">
+            Our round-the-clock dispatch room, certified recovery mechanics, and dedicated driver networks ensure non-stop operations day and night.
+          </p>
+        </div>
+
+        <div class="assistance-grid">
+          <div class="assistance-card">
+            <div class="assistance-icon-wrap">🛠️</div>
+            <h3>24/7 Highway Breakdown Assistance</h3>
+            <p>Immediate on-highway roadside assistance, tire vulcanizing, emergency mechanics across national highways.</p>
+            <span class="assistance-pill">Average Response &lt; 45 Mins</span>
+          </div>
+          <div class="assistance-card">
+            <div class="assistance-icon-wrap">🚨</div>
+            <h3>24/7 Central Dispatch Desk</h3>
+            <p>Live vehicle dispatch, FASTag toll clearances, and inter-state border compliance.</p>
+            <span class="assistance-pill">Live Dispatch Coordination</span>
+          </div>
+          <div class="assistance-card">
+            <div class="assistance-icon-wrap">📞</div>
+            <h3>24/7 Direct Booking Helpline</h3>
+            <p>Call our direct desk at +91 8115137699 at any hour for immediate vehicle placement.</p>
+            <span class="assistance-pill">Direct Hotline</span>
+          </div>
+          <div class="assistance-card">
+            <div class="assistance-icon-wrap">🛡️</div>
+            <h3>24/7 Relief Drivers &amp; Safety</h3>
+            <p>Pre-vetted relay drivers on long-haul routes to prevent fatigue and ensure zero tampering.</p>
+            <span class="assistance-pill">100% Safe Transit</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact & Map -->
+    <section class="contact-section" id="contact">
+      <div class="container-boxed contact-grid">
+        <div class="contact-info-panel">
+          <div class="eyebrow"><span class="eyebrow-line"></span> CONTACT US</div>
+          <h2>Shade Transport Private Limited</h2>
+          <p style="color: var(--ink-light); margin-bottom: 20px;">
+            Contact our Lucknow logistics headquarters for immediate freight bookings and vehicle coordination.
+          </p>
+
+          <div class="contact-methods">
+            <div class="contact-card-item">
+              <div class="contact-icon">📞</div>
+              <div>
+                <strong>24/7 Phone &amp; Helpline:</strong>
+                <a href="tel:+918115137699">+91 8115137699</a>
+              </div>
+            </div>
+            <div class="contact-card-item">
+              <div class="contact-icon">💬</div>
+              <div>
+                <strong>24/7 WhatsApp:</strong>
+                <a href="https://wa.me/918115137699" target="_blank">+91 8115137699</a>
+              </div>
+            </div>
+            <div class="contact-card-item">
+              <div class="contact-icon">✉️</div>
+              <div>
+                <strong>Email:</strong>
+                <a href="mailto:shadetransportlko@gmail.com">shadetransportlko@gmail.com</a>
+              </div>
+            </div>
+            <div class="contact-card-item">
+              <div class="contact-icon">📍</div>
+              <div>
+                <strong>Registered Office:</strong>
+                <p>G-1/121, Transport Nagar, Phase 2, Kanpur Road, Lucknow – 226012, UP</p>
+                <p style="font-size: 0.85rem; margin-top: 4px;">Hub: Nilmatha Cantt, Vijay Nagar, Nilmatha, Lucknow 226002</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-support-card">
+          <h3>24/7 Dispatch Desk &amp; Location</h3>
+          <p style="font-size: 0.92rem; color: var(--ink-light); line-height: 1.5;">
+            Our fleet coordinates departures day and night directly from Transport Nagar Phase 2 and Nilmatha Cantt onto the Kanpur Road Highway.
+          </p>
+
+          <div class="support-banner-247">
+            <strong><span class="pulse-dot"></span> 24/7 LIVE ASSISTANCE GUARANTEE</strong>
+            <p>
+              Emergency transport or weekend commercial dispatch, our dedicated coordinators are on duty right now.
+            </p>
+          </div>
+
+          <div class="support-action-buttons">
+            <a href="tel:+918115137699" class="button button-dark" style="width: 100%; padding: 14px;">
+              Call 24/7 Helpline (+91 8115137699)
+            </a>
+            <a href="https://wa.me/918115137699" target="_blank" class="button button-whatsapp" style="width: 100%; padding: 14px;">
+              Chat on WhatsApp (+91 8115137699)
+            </a>
+          </div>
+
+          <div class="map-embed-large">
+            <iframe 
+              src="https://maps.google.com/maps?output=embed&q=Shade+Transport+Nilmatha+Cantt+Vijay+Nagar+Lucknow+UP+226002" 
+              title="Shade Transport Lucknow Fleet Hub Location on Google Maps"
+              loading="lazy"
+            ></iframe>
+            <a 
+              href="https://maps.app.goo.gl/VDGzFLWJpBUHx15dA" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="map-open-link"
+            >
+              📍 Open in Google Maps →
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container-boxed footer-bottom">
+        <span>© 2016 - 2026 Shade Transport Private Limited. CIN: U63030UP2016PTC084403 | GSTIN: 09AAXCS2378F1ZO</span>
+        <a href="#top" class="back-to-top-btn">BACK TO TOP ↑</a>
+      </div>
+    </footer>
+
+    <!-- WhatsApp Floating Pill -->
+    <a href="https://wa.me/918115137699" class="whatsapp-fab" target="_blank" rel="noopener noreferrer">
+      <span>24/7 WhatsApp</span>
+    </a>
+  </div>
+
+  <!-- Shared Data & Vue 3 Script -->
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/vue-app.js"></script>
+</body>
+</html>
