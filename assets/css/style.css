@@ -3266,3 +3266,263 @@ button {
   .shade-brand-text { font-size: 1.5rem; }
   .shade-brand-overlay { top: 32%; left: 25%; }
 }
+
+
+/* ============================================================
+   COMPREHENSIVE MOBILE RESPONSIVE FIX
+   Fixes: header overflow, 4-col cards, text wrapping, all sections
+   ============================================================ */
+
+/* ---- Prevent ALL horizontal overflow ---- */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: hidden; max-width: 100vw; }
+.site-wrapper { overflow-x: hidden; }
+
+/* ---- TOPLINE BAR — hide on very small screens ---- */
+@media (max-width: 600px) {
+  .topline { display: none !important; }
+}
+
+/* ---- HEADER — fix logo + button overlap ---- */
+@media (max-width: 768px) {
+  .site-header {
+    padding: 10px 16px !important;
+    gap: 8px !important;
+    flex-wrap: nowrap !important;
+  }
+  .brand-name {
+    font-size: 1rem !important;
+    white-space: nowrap;
+  }
+  .header-actions {
+    display: none !important;
+  }
+  .mobile-menu-toggle {
+    display: flex !important;
+    margin-left: auto;
+  }
+  /* Hide the 24/7 support button in header on mobile */
+  .topline-center, .topline-left, .topline-badge { display: none !important; }
+}
+
+/* ---- HERO SECTION — stack on mobile ---- */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column !important;
+    padding: 20px 16px !important;
+    gap: 24px !important;
+    min-height: auto !important;
+  }
+  .hero-copy {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+  .hero-title {
+    font-size: 2.4rem !important;
+    line-height: 1.15 !important;
+  }
+  .hero-visual, .hero-visual--fullbleed {
+    width: 100% !important;
+    height: 260px !important;
+    border-radius: 10px !important;
+  }
+  .hero-truck-img { height: 260px !important; object-fit: cover; }
+  .hero-actions {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+  .hero-actions .button { width: 100% !important; text-align: center; }
+  .call-toggle-widget { width: 100% !important; }
+  .shade-brand-text { font-size: 1.2rem !important; }
+  .shade-brand-overlay { top: 35% !important; left: 22% !important; }
+}
+
+/* ---- STATS STRIP ---- */
+@media (max-width: 600px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+}
+
+/* ---- SERVICES GRID ---- */
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ---- FLEET STANDARDS GRID ---- */
+@media (max-width: 768px) {
+  .fleet-standards-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+@media (max-width: 480px) {
+  .fleet-standards-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ---- FLEET CATEGORY CHIPS ---- */
+@media (max-width: 768px) {
+  .fleet-cat-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+  .fleet-cat-chip { padding: 10px 10px !important; gap: 8px !important; }
+  .fleet-cat-icon { font-size: 1.2rem !important; }
+  .fleet-cat-body strong { font-size: 0.74rem !important; }
+  .fleet-cat-body span { font-size: 0.6rem !important; }
+}
+@media (max-width: 380px) {
+  .fleet-cat-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ---- 24/7 ASSISTANCE CARDS — CRITICAL FIX ---- */
+/* Force 1 column on mobile instead of 4 */
+@media (max-width: 900px) {
+  .assistance-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 16px !important;
+  }
+}
+@media (max-width: 600px) {
+  .assistance-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+  .assistance-card { padding: 20px 18px !important; }
+}
+
+/* ---- SECTION HEADING — fix text overflow ---- */
+@media (max-width: 768px) {
+  .section-heading {
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+  .section-heading h2 {
+    font-size: 1.8rem !important;
+  }
+  .heading-aside {
+    max-width: 100% !important;
+    font-size: 0.88rem !important;
+  }
+}
+
+/* ---- JOURNEY MILESTONES ---- */
+@media (max-width: 768px) {
+  .journey-timeline-list {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 14px !important;
+  }
+}
+@media (max-width: 480px) {
+  .journey-timeline-list {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ---- DIRECTORS GRID ---- */
+@media (max-width: 768px) {
+  .directors-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .director-contact-strip {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+}
+
+/* ---- REVIEWS GRID ---- */
+@media (max-width: 768px) {
+  .reviews-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .reviews-top {
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+}
+
+/* ---- CONTACT / MAPS ---- */
+@media (max-width: 768px) {
+  .contact-layout {
+    flex-direction: column !important;
+    gap: 24px !important;
+  }
+  .contact-map-frame { height: 220px !important; }
+}
+
+/* ---- FOOTER ---- */
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+}
+
+/* ---- FLEET SLIDER ---- */
+@media (max-width: 600px) {
+  .fleet-slider-track { height: 220px !important; }
+  .fleet-slider-img { height: 220px !important; }
+  .fleet-slider-thumbs { gap: 6px !important; }
+  .fleet-thumb-btn { min-width: 60px !important; }
+  .fleet-thumb-btn img { width: 50px !important; height: 36px !important; }
+}
+
+/* ---- GALLERY / CTA STRIP ---- */
+@media (max-width: 600px) {
+  .gallery-cta-strip {
+    flex-direction: column !important;
+    gap: 14px !important;
+    align-items: flex-start !important;
+  }
+  .gallery-cta-left {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+}
+
+/* ---- FLOATING DOCK — keep on screen ---- */
+@media (max-width: 480px) {
+  .floating-dual-dock {
+    bottom: 12px !important;
+    right: 12px !important;
+    left: 12px !important;
+    flex-direction: row !important;
+    gap: 8px !important;
+  }
+  .dock-call-btn, .dock-whatsapp-btn {
+    flex: 1 !important;
+    justify-content: center !important;
+    font-size: 0.78rem !important;
+    padding: 10px 8px !important;
+  }
+}
+
+/* ---- CONTAINER BOXED — proper padding on mobile ---- */
+@media (max-width: 768px) {
+  .container-boxed {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  section { padding-top: 48px !important; padding-bottom: 48px !important; }
+}
+
+/* ---- MODAL on mobile ---- */
+@media (max-width: 600px) {
+  .modal-content {
+    width: 95vw !important;
+    max-height: 90vh !important;
+    overflow-y: auto;
+  }
+  .modal-specs-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ---- TOPLINE SWITCHER — hide on mobile ---- */
+@media (max-width: 768px) {
+  .topline-switcher { display: none !important; }
+}
