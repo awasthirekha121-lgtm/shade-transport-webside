@@ -221,15 +221,37 @@ function ShadeTransportApp() {
           </div>
         </div>
 
-        <div className="hero-visual">
-          <img src="assets/images/shade-container-truck.jpg" alt="Commercial container truck on Indian highway" width="1024" height="680" />
+        <div className="hero-visual hero-visual--fullbleed">
+          {/* Full-bleed truck image with zoom-in animation */}
+          <img src="assets/images/shade-container-truck.jpg" alt="Shade Transport truck on Indian highway" className="hero-truck-img" width="1024" height="680" />
+
+          {/* Dark gradient wash */}
           <div className="image-wash"></div>
-          <div className="visual-index"><span>24/7</span> / ACTIVE HIGHWAY FLEET</div>
-          <div className="visual-caption">
+
+          {/* SHADE brand overlay — covers BLR text on truck */}
+          <div className="shade-brand-overlay">
+            <span className="shade-brand-text">SHADE</span>
+            <span className="shade-brand-sub">TRANSPORT LOGISTICS</span>
+          </div>
+
+          {/* Moving road lines animation */}
+          <div className="road-lines-anim">
+            <div className="road-line"></div>
+            <div className="road-line"></div>
+            <div className="road-line"></div>
+          </div>
+
+          {/* Badge top-left */}
+          <div className="visual-index anim-fadein"><span>24/7</span> / ACTIVE HIGHWAY FLEET</div>
+
+          {/* Bottom caption */}
+          <div className="visual-caption anim-slidein">
             <span className="caption-rule"></span>
             <p>Non-stop logistics connectivity between Lucknow and major commercial cities, dry ports, and sea terminals.</p>
           </div>
-          <div className="route-stamp" aria-label="Central Hub in Lucknow">
+
+          {/* Hub stamp */}
+          <div className="route-stamp anim-popin" aria-label="Central Hub in Lucknow">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>
             <span>CENTRAL HUB</span>
             <strong>Lucknow, UP</strong>
@@ -409,25 +431,27 @@ function ShadeTransportApp() {
         </div>
       </section>
 
-      {/* Fleet Explorer (All 12 Vehicle Categories with Indian Truck Photos & Standards) */}
+      {/* Fleet Section — Standards + 12 Category Name Cards (no images) */}
       <section className="fleet-section section-pad" id="fleet">
         <div className="container-boxed">
+
+          {/* Heading */}
           <div className="fleet-heading-wrapper">
             <div>
               <div className="eyebrow eyebrow-light"><span className="eyebrow-line"></span> OUR FLEET · 12 COMMERCIAL VEHICLE CLASSES</div>
               <h2>Engineered for every load.<br /><em>Explore Our Fleet.</em></h2>
             </div>
             <p style={{ maxWidth: '420px', color: '#c9d2d0', fontSize: '0.95rem' }}>
-              From compact pickups for inner-city distribution to heavy 40ft trailers, 32ft containers, and temperature-controlled reefers.
+              From compact pickups for inner-city distribution to heavy 40ft trailers, 32ft containers, and temperature-controlled reefers — BS-VI certified, AIS-140 GPS tracked.
             </p>
           </div>
 
-          {/* Indian Fleet Standards & Highlights Column */}
+          {/* Fleet Standards Strip */}
           <div className="fleet-overview-strip">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px', flexWrap: 'wrap', gap: '12px' }}>
               <div>
                 <span style={{ fontFamily: 'var(--mono)', fontSize: '0.74rem', color: 'var(--ochre)', letterSpacing: '0.08em' }}>PAN-INDIA FLEET CAPABILITY</span>
-                <h3 style={{ fontFamily: 'var(--serif)', fontSize: '1.35rem', color: '#fff', margin: '4px 0 0' }}>Our Fleet Standards &amp; Certifications</h3>
+                <h3 style={{ fontFamily: 'var(--serif)', fontSize: '1.35rem', color: '#fff', margin: '4px 0 0' }}>Fleet Standards &amp; Certifications</h3>
               </div>
               <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
                 <span className="service-tag" style={{ background: 'rgba(255,255,255,0.08)', color: '#fff' }}>150+ Fleet Strength</span>
@@ -435,7 +459,6 @@ function ShadeTransportApp() {
                 <span className="service-tag" style={{ background: 'rgba(255,255,255,0.08)', color: '#fff' }}>9 Major Ports</span>
               </div>
             </div>
-
             <div className="fleet-standards-grid">
               {FLEET_STANDARDS.map((std, idx) => (
                 <div key={idx} className="fleet-standard-card">
@@ -447,73 +470,46 @@ function ShadeTransportApp() {
             </div>
           </div>
 
-          {/* Filter Pills */}
-          <div className="fleet-filters">
-            <button 
-              className={`filter-btn ${activeFleetFilter === 'all' ? 'active' : ''}`}
-              onClick={() => setActiveFleetFilter('all')}
-            >
-              All Vehicles ({FLEET_DATA.length})
-            </button>
-            <button 
-              className={`filter-btn ${activeFleetFilter === 'mini' ? 'active' : ''}`}
-              onClick={() => setActiveFleetFilter('mini')}
-            >
-              Mini Trucks &amp; Pickups
-            </button>
-            <button 
-              className={`filter-btn ${activeFleetFilter === 'light' ? 'active' : ''}`}
-              onClick={() => setActiveFleetFilter('light')}
-            >
-              LCV Light Trucks
-            </button>
-            <button 
-              className={`filter-btn ${activeFleetFilter === 'medium' ? 'active' : ''}`}
-              onClick={() => setActiveFleetFilter('medium')}
-            >
-              Medium Freight
-            </button>
-            <button 
-              className={`filter-btn ${activeFleetFilter === 'container' ? 'active' : ''}`}
-              onClick={() => setActiveFleetFilter('container')}
-            >
-              Closed Containers &amp; Movers
-            </button>
-            <button 
-              className={`filter-btn ${activeFleetFilter === 'specialized' ? 'active' : ''}`}
-              onClick={() => setActiveFleetFilter('specialized')}
-            >
-              Specialized (Reefer / Trailer / Tanker)
-            </button>
-          </div>
-
-          {/* Cards Grid with Authentic Indian Commercial Truck Photos */}
-          <div className="fleet-grid">
-            {filteredFleet.map(veh => (
-              <article 
-                key={veh.id} 
-                className="fleet-card"
-                onClick={() => setSelectedVehicle(veh)}
+          {/* 12 Vehicle Category Chips — no images, clean grid */}
+          <div className="fleet-cat-grid">
+            {[
+              { icon: '🚐', name: 'Mini Truck & Pickup',         model: 'Tata Ace / Mahindra Bolero',      cap: '0.75–1.5 MT' },
+              { icon: '🚚', name: 'Light Commercial (LCV)',       model: 'Eicher Pro 2049 / Tata 407',      cap: '2.5–4.5 MT' },
+              { icon: '🚛', name: 'Medium Goods Truck',           model: 'Tata 1613 / Eicher 6-Wheeler',    cap: '7–9.5 MT' },
+              { icon: '🚜', name: 'Heavy Multi-Axle',             model: 'Tata Signa / Ashok Leyland 10W',  cap: '16–25 MT' },
+              { icon: '🏗️', name: 'Open-Body Truck',              model: 'Ashok Leyland Taurus / Tata LPT', cap: '5–20 MT' },
+              { icon: '📦', name: 'Closed Container (32ft)',      model: 'BharatBenz / Tata SXL-MXL',       cap: '8–15 MT' },
+              { icon: '🚢', name: '40ft ISO Container Trailer',   model: 'Tata Prima / Volvo FMX',          cap: '20–28 MT' },
+              { icon: '❄️', name: 'Reefer / Cold Chain',          model: 'Ashok Leyland Reefer / Tata',     cap: '-25°C–+15°C' },
+              { icon: '⛽', name: 'Tanker Truck',                 model: 'Tata LPT Tanker / IOCL Spec',    cap: '10,000–20,000 L' },
+              { icon: '🏠', name: 'Packers & Movers Van',         model: 'Force Traveller / Eicher Van',    cap: 'Full Home Load' },
+              { icon: '⚙️', name: 'ODC / Flatbed Trailer',        model: 'Goldhofer / Tata LPK Flatbed',    cap: 'Up to 50+ MT' },
+              { icon: '🌾', name: 'Agricultural Commodity Truck', model: 'Mahindra Truxo / Tata Truck',     cap: '5–18 MT Bulk' },
+            ].map((cat, i) => (
+              <a
+                key={i}
+                href={`https://wa.me/918115137699?text=Hi%20Shade%20Transport%2C%20I%20need%20a%20${encodeURIComponent(cat.name)}%20vehicle.`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="fleet-cat-chip"
               >
-                {/* Truck Photo Thumbnail */}
-                <div className="fleet-card-thumb">
-                  <img src={veh.image} alt={veh.model} loading="lazy" />
-                  <span className="fleet-card-model-badge">{veh.model}</span>
+                <span className="fleet-cat-icon">{cat.icon}</span>
+                <div className="fleet-cat-body">
+                  <strong>{cat.name}</strong>
+                  <span>{cat.model}</span>
+                  <span className="fleet-cat-cap">{cat.cap}</span>
                 </div>
-
-                <div className="fleet-card-meta">
-                  <span>{veh.index}</span>
-                  <span className="fleet-card-fit">{veh.badge}</span>
-                </div>
-                <h3 className="fleet-card-title">{veh.title}</h3>
-                <p className="fleet-card-desc">{veh.desc}</p>
-                <div className="fleet-card-cta">
-                  <span>Capacity: {veh.capacity}</span>
-                  <span>View Details →</span>
-                </div>
-              </article>
+                <span className="fleet-cat-arrow">→</span>
+              </a>
             ))}
           </div>
+
+          {/* Book CTA */}
+          <div style={{ textAlign: 'center', marginTop: '32px' }}>
+            <a href="tel:+918115137699" className="button button-primary" style={{ marginRight: '14px' }}>📞 Call to Book a Vehicle</a>
+            <a href="https://wa.me/918115137699?text=Hi%20Shade%20Transport%2C%20I%20need%20a%20vehicle%20booking." target="_blank" rel="noopener noreferrer" className="button button-whatsapp">💬 WhatsApp 24/7</a>
+          </div>
+
         </div>
       </section>
 
@@ -761,15 +757,16 @@ function ShadeTransportApp() {
         </div>
       </section>
 
-      {/* ---- Our Team & Fleet Gallery ---- */}
+
+
       {/* ---- OUR FLEET SLIDER ---- */}
       {(() => {
         const FLEET_SLIDES = [
-          { src: 'assets/images/shade-container-truck.jpg', tag: '40 FT CONTAINER TRUCK', icon: '🚛', title: 'Heavy Container Fleet', sub: 'Tata Prima · BharatBenz 1617 · Pan-India Permit · 20 / 40 FT ISO Containers' },
+          { src: 'assets/images/shade-container-truck.jpg', tag: '40 FT CONTAINER TRUCK', icon: '🚛', title: 'Heavy Container Fleet',       sub: 'Tata Prima · BharatBenz 1617 · Pan-India Permit · 20/40 FT ISO Containers' },
           { src: 'assets/images/tata-ace.jpg',              tag: 'MINI TRUCK / TATA ACE',  icon: '🚐', title: 'Mini Truck — Last-Mile Delivery', sub: 'Tata Ace Gold / EV · 750 kg–1 T · City & Intra-District Network' },
-          { src: 'assets/images/eicher-lcv.jpg',            tag: 'LCV / EICHER PRO',       icon: '🚚', title: 'Light Commercial Vehicles', sub: 'Eicher Pro 2095 XP · 5–7 Tonne · UP / NCR / Bihar Corridor' },
-          { src: 'assets/images/tata-signa.jpg',            tag: 'MULTI-AXLE HEAVY',       icon: '🚜', title: 'Multi-Axle Trucks', sub: 'Tata Signa 4423.S · Ashok Leyland 4940 · 44 Tonne GVW · National Permit' },
-          { src: 'assets/images/shade-road.jpg',            tag: 'PAN-INDIA HIGHWAYS',     icon: '🛣️', title: 'Fleet on National Highways', sub: 'Lucknow ↔ Delhi NCR · Mumbai · Kolkata · Bengaluru · Chennai · Ahmedabad' },
+          { src: 'assets/images/eicher-lcv.jpg',            tag: 'LCV / EICHER PRO',       icon: '🚚', title: 'Light Commercial Vehicles',   sub: 'Eicher Pro 2095 XP · 5–7 Tonne · UP / NCR / Bihar Corridor' },
+          { src: 'assets/images/tata-signa.jpg',            tag: 'MULTI-AXLE HEAVY',       icon: '🚜', title: 'Multi-Axle Trucks',           sub: 'Tata Signa 4423.S · Ashok Leyland 4940 · 44 Tonne GVW · National Permit' },
+          { src: 'assets/images/shade-road.jpg',            tag: 'PAN-INDIA HIGHWAYS',     icon: '🛣️', title: 'Fleet on National Highways',  sub: 'Lucknow ↔ Delhi NCR · Mumbai · Kolkata · Bengaluru · Chennai · Ahmedabad' },
         ];
         const [slide, setSlide] = React.useState(0);
         const totalSlides = FLEET_SLIDES.length;
@@ -796,16 +793,9 @@ function ShadeTransportApp() {
                 </p>
               </div>
 
-              {/* Slider */}
               <div className="fleet-slider">
                 <div className="fleet-slider-track">
-                  <img
-                    key={slide}
-                    src={current.src}
-                    alt={current.title}
-                    className="fleet-slider-img"
-                  />
-                  {/* Overlay */}
+                  <img key={slide} src={current.src} alt={current.title} className="fleet-slider-img" />
                   <div className="fleet-slider-overlay">
                     <span className="fleet-slider-tag">{current.tag}</span>
                     <div className="fleet-slider-info">
@@ -816,31 +806,19 @@ function ShadeTransportApp() {
                       </div>
                     </div>
                   </div>
-                  {/* Prev / Next */}
                   <button className="fleet-slider-btn fleet-slider-btn--prev" onClick={prev} aria-label="Previous">&#8592;</button>
                   <button className="fleet-slider-btn fleet-slider-btn--next" onClick={next} aria-label="Next">&#8594;</button>
                 </div>
 
-                {/* Dot indicators */}
                 <div className="fleet-slider-dots">
                   {FLEET_SLIDES.map((_, i) => (
-                    <button
-                      key={i}
-                      className={`fleet-slider-dot${i === slide ? ' active' : ''}`}
-                      onClick={() => setSlide(i)}
-                      aria-label={`Slide ${i + 1}`}
-                    />
+                    <button key={i} className={`fleet-slider-dot${i === slide ? ' active' : ''}`} onClick={() => setSlide(i)} aria-label={`Slide ${i + 1}`} />
                   ))}
                 </div>
 
-                {/* Thumbnail strip */}
                 <div className="fleet-slider-thumbs">
                   {FLEET_SLIDES.map((s, i) => (
-                    <button
-                      key={i}
-                      className={`fleet-thumb-btn${i === slide ? ' active' : ''}`}
-                      onClick={() => setSlide(i)}
-                    >
+                    <button key={i} className={`fleet-thumb-btn${i === slide ? ' active' : ''}`} onClick={() => setSlide(i)}>
                       <img src={s.src} alt={s.title} />
                       <span>{s.icon}</span>
                     </button>
@@ -848,7 +826,6 @@ function ShadeTransportApp() {
                 </div>
               </div>
 
-              {/* CTA Strip */}
               <div className="gallery-cta-strip">
                 <div className="gallery-cta-left">
                   <span className="gallery-cta-badge">🚛 25+ Vehicles</span>
@@ -856,9 +833,7 @@ function ShadeTransportApp() {
                   <span className="gallery-cta-badge">📡 AIS-140 GPS</span>
                   <span className="gallery-cta-badge">⏰ 24/7 Operations</span>
                 </div>
-                <a href="tel:+918115137699" className="button button-primary">
-                  Book a Vehicle Now →
-                </a>
+                <a href="tel:+918115137699" className="button button-primary">Book a Vehicle Now →</a>
               </div>
             </div>
           </section>
