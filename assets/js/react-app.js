@@ -470,39 +470,66 @@ function ShadeTransportApp() {
             </div>
           </div>
 
-          {/* 12 Vehicle Category Chips — no images, clean grid */}
-          <div className="fleet-cat-grid">
-            {[
-              { icon: '🚐', name: 'Mini Truck & Pickup',         model: 'Tata Ace / Mahindra Bolero',      cap: '0.75–1.5 MT' },
-              { icon: '🚚', name: 'Light Commercial (LCV)',       model: 'Eicher Pro 2049 / Tata 407',      cap: '2.5–4.5 MT' },
-              { icon: '🚛', name: 'Medium Goods Truck',           model: 'Tata 1613 / Eicher 6-Wheeler',    cap: '7–9.5 MT' },
-              { icon: '🚜', name: 'Heavy Multi-Axle',             model: 'Tata Signa / Ashok Leyland 10W',  cap: '16–25 MT' },
-              { icon: '🏗️', name: 'Open-Body Truck',              model: 'Ashok Leyland Taurus / Tata LPT', cap: '5–20 MT' },
-              { icon: '📦', name: 'Closed Container (32ft)',      model: 'BharatBenz / Tata SXL-MXL',       cap: '8–15 MT' },
-              { icon: '🚢', name: '40ft ISO Container Trailer',   model: 'Tata Prima / Volvo FMX',          cap: '20–28 MT' },
-              { icon: '❄️', name: 'Reefer / Cold Chain',          model: 'Ashok Leyland Reefer / Tata',     cap: '-25°C–+15°C' },
-              { icon: '⛽', name: 'Tanker Truck',                 model: 'Tata LPT Tanker / IOCL Spec',    cap: '10,000–20,000 L' },
-              { icon: '🏠', name: 'Packers & Movers Van',         model: 'Force Traveller / Eicher Van',    cap: 'Full Home Load' },
-              { icon: '⚙️', name: 'ODC / Flatbed Trailer',        model: 'Goldhofer / Tata LPK Flatbed',    cap: 'Up to 50+ MT' },
-              { icon: '🌾', name: 'Agricultural Commodity Truck', model: 'Mahindra Truxo / Tata Truck',     cap: '5–18 MT Bulk' },
-            ].map((cat, i) => (
-              <a
-                key={i}
-                href={`https://wa.me/918115137699?text=Hi%20Shade%20Transport%2C%20I%20need%20a%20${encodeURIComponent(cat.name)}%20vehicle.`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="fleet-cat-chip"
-              >
-                <span className="fleet-cat-icon">{cat.icon}</span>
-                <div className="fleet-cat-body">
-                  <strong>{cat.name}</strong>
-                  <span>{cat.model}</span>
-                  <span className="fleet-cat-cap">{cat.cap}</span>
+          {/* 12 Vehicle Category Photo Auto-Slider */}
+          {(() => {
+            const CAT_SLIDES = [
+              { img: 'assets/images/tata-ace.jpg',              icon: '🚐', name: 'Mini Truck & Pickup',         model: 'Tata Ace Gold / Mahindra Bolero Maxi',  cap: '0.75–1.5 MT',     color: '#e67e22' },
+              { img: 'assets/images/eicher-lcv.jpg',            icon: '🚚', name: 'Light Commercial (LCV)',       model: 'Eicher Pro 2049 / Tata 407',            cap: '2.5–4.5 MT',      color: '#27ae60' },
+              { img: 'assets/images/shade-road.jpg',            icon: '🚛', name: 'Medium Goods Truck',           model: 'Tata 1613 / Eicher Pro 6W',             cap: '7–9.5 MT',        color: '#2980b9' },
+              { img: 'assets/images/tata-signa.jpg',            icon: '🚜', name: 'Heavy Multi-Axle',             model: 'Tata Signa / Ashok Leyland 10W',        cap: '16–25 MT',        color: '#8e44ad' },
+              { img: 'assets/images/tata-signa.jpg',            icon: '🏗️', name: 'Open-Body Flatbed',            model: 'Ashok Leyland Taurus / Tata LPT',       cap: '5–20 MT',         color: '#c0392b' },
+              { img: 'assets/images/shade-container-truck.jpg', icon: '📦', name: 'Closed Container (32ft)',      model: 'BharatBenz / Tata SXL-MXL',             cap: '8–15 MT',         color: '#16a085' },
+              { img: 'assets/images/shade-container-truck.jpg', icon: '🚢', name: '40ft ISO Container Trailer',   model: 'Tata Prima / BharatBenz 1617',          cap: '20–28 MT',        color: '#d35400' },
+              { img: 'assets/images/shade-road.jpg',            icon: '❄️', name: 'Reefer / Cold Chain',          model: 'Ashok Leyland Reefer / Tata Signa',     cap: '-25°C to +15°C',  color: '#1abc9c' },
+              { img: 'assets/images/shade-road.jpg',            icon: '⛽', name: 'Tanker Truck',                 model: 'Tata LPT Tanker / IOCL Spec',           cap: '10,000–20,000 L', color: '#f39c12' },
+              { img: 'assets/images/tata-ace.jpg',              icon: '🏠', name: 'Packers & Movers Van',         model: 'Force Traveller / Eicher Van',          cap: 'Full Home Load',  color: '#e74c3c' },
+              { img: 'assets/images/tata-signa.jpg',            icon: '⚙️', name: 'ODC / Flatbed Trailer',        model: 'Goldhofer / Tata LPK Flatbed',          cap: 'Up to 50+ MT',    color: '#7f8c8d' },
+              { img: 'assets/images/shade-road.jpg',            icon: '🌾', name: 'Agricultural Commodity',       model: 'Mahindra Truxo / Tata Truck',           cap: '5–18 MT Bulk',    color: '#27ae60' },
+            ];
+            const [cs, setCs] = React.useState(0);
+            const total = CAT_SLIDES.length;
+            React.useEffect(() => {
+              const t = setInterval(() => setCs(s => (s + 1) % total), 3000);
+              return () => clearInterval(t);
+            }, []);
+            const cur = CAT_SLIDES[cs];
+            return (
+              <div className="cat-slider-wrap">
+                {/* Main Slide */}
+                <div className="cat-slide-main">
+                  <img key={cs} src={cur.img} alt={cur.name} className="cat-slide-img" />
+                  <div className="cat-slide-overlay" style={{ borderTopColor: cur.color }}>
+                    <span className="cat-slide-icon">{cur.icon}</span>
+                    <div>
+                      <span className="cat-slide-num">{String(cs+1).padStart(2,'0')} / {String(total).padStart(2,'0')}</span>
+                      <h3 className="cat-slide-name">{cur.name}</h3>
+                      <span className="cat-slide-model">{cur.model}</span>
+                      <span className="cat-slide-cap" style={{ color: cur.color }}>{cur.cap}</span>
+                    </div>
+                    <a href={`https://wa.me/918115137699?text=Hi%20Shade%20Transport%2C%20I%20need%20a%20${encodeURIComponent(cur.name)}%20vehicle.`} target="_blank" rel="noopener noreferrer" className="cat-slide-btn">Book Now →</a>
+                  </div>
+                  {/* Prev / Next */}
+                  <button className="cat-arrow cat-arrow--l" onClick={() => setCs(s => (s-1+total)%total)}>&#8592;</button>
+                  <button className="cat-arrow cat-arrow--r" onClick={() => setCs(s => (s+1)%total)}>&#8594;</button>
                 </div>
-                <span className="fleet-cat-arrow">→</span>
-              </a>
-            ))}
-          </div>
+                {/* Dot strip */}
+                <div className="cat-dots">
+                  {CAT_SLIDES.map((_, i) => (
+                    <button key={i} className={`cat-dot${i===cs?' active':''}`} onClick={() => setCs(i)} style={i===cs?{background:cur.color}:{}} />
+                  ))}
+                </div>
+                {/* Thumbnail strip */}
+                <div className="cat-thumbs">
+                  {CAT_SLIDES.map((s, i) => (
+                    <button key={i} className={`cat-thumb${i===cs?' active':''}`} onClick={() => setCs(i)} style={i===cs?{borderColor:s.color}:{}}>
+                      <span>{s.icon}</span>
+                      <span>{s.name.split(' ').slice(0,2).join(' ')}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            );
+          })()}
 
           {/* Book CTA */}
           <div style={{ textAlign: 'center', marginTop: '32px' }}>
@@ -839,6 +866,63 @@ function ShadeTransportApp() {
           </section>
         );
       })()}
+
+      {/* ---- TRUSTED CUSTOMERS / CLIENTS SECTION ---- */}
+      <section className="clients-section" id="clients">
+        <div className="container-boxed">
+          <div className="section-heading" style={{ justifyContent: 'center', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+            <div className="eyebrow"><span className="eyebrow-line"></span> OUR TRUSTED CLIENTS &amp; PARTNERS</div>
+            <h2>Trusted by India's<br /><em>Leading Businesses.</em></h2>
+            <p className="heading-aside" style={{ textAlign: 'center', marginTop: '8px' }}>
+              From government corporations to global e-commerce giants — Shade Transport is the preferred logistics partner for businesses across India.
+            </p>
+          </div>
+
+          {/* Infinite auto-scroll marquee — two rows */}
+          <div className="clients-marquee-wrap">
+            <div className="clients-marquee">
+              {/* Duplicate list for seamless loop */}
+              {[
+                { name: 'Central Warehousing Corporation', short: 'CWC', emoji: '🏛️', color: '#1a5276', bg: '#d6eaf8' },
+                { name: 'Duroply Industries',              short: 'DUROPLY', emoji: '🪵', color: '#784212', bg: '#fdebd0' },
+                { name: 'Fairmate Chemicals',              short: 'FAIRMATE', emoji: '🧱', color: '#1e8449', bg: '#d5f5e3' },
+                { name: 'Saldar',                          short: 'SALDAR', emoji: '⚙️', color: '#6c3483', bg: '#e8daef' },
+                { name: 'Hemko',                           short: 'HEMKO', emoji: '🔧', color: '#935116', bg: '#fef9e7' },
+                { name: 'Ticom Heels',                     short: 'TICOM', emoji: '👟', color: '#1b4f72', bg: '#d6eaf8' },
+                { name: 'D.R Auto',                        short: 'D.R AUTO', emoji: '🚗', color: '#c0392b', bg: '#fadbd8' },
+                { name: 'Amazon India',                    short: 'AMAZON', emoji: '📦', color: '#e67e22', bg: '#fef5e7' },
+                { name: 'Indian Railways',                 short: 'RAILWAYS', emoji: '🚂', color: '#117a65', bg: '#d1f2eb' },
+                // Duplicate for seamless scroll
+                { name: 'Central Warehousing Corporation', short: 'CWC', emoji: '🏛️', color: '#1a5276', bg: '#d6eaf8' },
+                { name: 'Duroply Industries',              short: 'DUROPLY', emoji: '🪵', color: '#784212', bg: '#fdebd0' },
+                { name: 'Fairmate Chemicals',              short: 'FAIRMATE', emoji: '🧱', color: '#1e8449', bg: '#d5f5e3' },
+                { name: 'Saldar',                          short: 'SALDAR', emoji: '⚙️', color: '#6c3483', bg: '#e8daef' },
+                { name: 'Hemko',                           short: 'HEMKO', emoji: '🔧', color: '#935116', bg: '#fef9e7' },
+                { name: 'Ticom Heels',                     short: 'TICOM', emoji: '👟', color: '#1b4f72', bg: '#d6eaf8' },
+                { name: 'D.R Auto',                        short: 'D.R AUTO', emoji: '🚗', color: '#c0392b', bg: '#fadbd8' },
+                { name: 'Amazon India',                    short: 'AMAZON', emoji: '📦', color: '#e67e22', bg: '#fef5e7' },
+                { name: 'Indian Railways',                 short: 'RAILWAYS', emoji: '🚂', color: '#117a65', bg: '#d1f2eb' },
+              ].map((c, i) => (
+                <div key={i} className="client-logo-card" style={{ background: c.bg, borderColor: c.color + '30' }}>
+                  <div className="client-logo-icon" style={{ background: c.color + '18', color: c.color }}>{c.emoji}</div>
+                  <div className="client-logo-info">
+                    <span className="client-logo-short" style={{ color: c.color }}>{c.short}</span>
+                    <span className="client-logo-full">{c.name}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Stats row */}
+          <div className="clients-stats-row">
+            <div className="clients-stat"><strong>9+</strong><span>Trusted Partners</span></div>
+            <div className="clients-stat"><strong>500+</strong><span>Shipments Delivered</span></div>
+            <div className="clients-stat"><strong>100%</strong><span>On-Time Delivery Rate</span></div>
+            <div className="clients-stat"><strong>₹Cr+</strong><span>Cargo Value Handled</span></div>
+          </div>
+        </div>
+      </section>
 
       {/* Google Reviews &amp; Client Feedback */}
       <section className="reviews-section" id="reviews">
