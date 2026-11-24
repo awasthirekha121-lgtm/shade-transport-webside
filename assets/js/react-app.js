@@ -470,62 +470,71 @@ function ShadeTransportApp() {
             </div>
           </div>
 
-          {/* 12 Vehicle Category Photo Auto-Slider */}
+          {/* 3-Card Box Slider — matches sample design */}
           {(() => {
-            const CAT_SLIDES = [
-              { img: 'assets/images/tata-ace.jpg',              icon: '🚐', name: 'Mini Truck & Pickup',         model: 'Tata Ace Gold / Mahindra Bolero Maxi',  cap: '0.75–1.5 MT',     color: '#e67e22' },
-              { img: 'assets/images/eicher-lcv.jpg',            icon: '🚚', name: 'Light Commercial (LCV)',       model: 'Eicher Pro 2049 / Tata 407',            cap: '2.5–4.5 MT',      color: '#27ae60' },
-              { img: 'assets/images/shade-road.jpg',            icon: '🚛', name: 'Medium Goods Truck',           model: 'Tata 1613 / Eicher Pro 6W',             cap: '7–9.5 MT',        color: '#2980b9' },
-              { img: 'assets/images/tata-signa.jpg',            icon: '🚜', name: 'Heavy Multi-Axle',             model: 'Tata Signa / Ashok Leyland 10W',        cap: '16–25 MT',        color: '#8e44ad' },
-              { img: 'assets/images/tata-signa.jpg',            icon: '🏗️', name: 'Open-Body Flatbed',            model: 'Ashok Leyland Taurus / Tata LPT',       cap: '5–20 MT',         color: '#c0392b' },
-              { img: 'assets/images/shade-container-truck.jpg', icon: '📦', name: 'Closed Container (32ft)',      model: 'BharatBenz / Tata SXL-MXL',             cap: '8–15 MT',         color: '#16a085' },
-              { img: 'assets/images/shade-container-truck.jpg', icon: '🚢', name: '40ft ISO Container Trailer',   model: 'Tata Prima / BharatBenz 1617',          cap: '20–28 MT',        color: '#d35400' },
-              { img: 'assets/images/shade-road.jpg',            icon: '❄️', name: 'Reefer / Cold Chain',          model: 'Ashok Leyland Reefer / Tata Signa',     cap: '-25°C to +15°C',  color: '#1abc9c' },
-              { img: 'assets/images/shade-road.jpg',            icon: '⛽', name: 'Tanker Truck',                 model: 'Tata LPT Tanker / IOCL Spec',           cap: '10,000–20,000 L', color: '#f39c12' },
-              { img: 'assets/images/tata-ace.jpg',              icon: '🏠', name: 'Packers & Movers Van',         model: 'Force Traveller / Eicher Van',          cap: 'Full Home Load',  color: '#e74c3c' },
-              { img: 'assets/images/tata-signa.jpg',            icon: '⚙️', name: 'ODC / Flatbed Trailer',        model: 'Goldhofer / Tata LPK Flatbed',          cap: 'Up to 50+ MT',    color: '#7f8c8d' },
-              { img: 'assets/images/shade-road.jpg',            icon: '🌾', name: 'Agricultural Commodity',       model: 'Mahindra Truxo / Tata Truck',           cap: '5–18 MT Bulk',    color: '#27ae60' },
+            const FLEET_CARDS = [
+              { img: 'assets/images/tata-ace.jpg',              name: 'Mini Truck & Pickup',        desc: 'Compact Tata Ace & Mahindra Bolero for local city deliveries, quick parcel pickups and small household moves across Lucknow and nearby districts.', cap: '0.75–1.5 MT' },
+              { img: 'assets/images/eicher-lcv.jpg',            name: 'Light Commercial (LCV)',      desc: 'Dependable Eicher Pro & Tata 407 trucks for medium commercial consignments, FMCG distribution and short-to-medium interstate freight routes.', cap: '2.5–4.5 MT' },
+              { img: 'assets/images/shade-road.jpg',            name: 'Medium Goods Truck',          desc: 'Sturdy 6-wheeler trucks delivering regional and long-haul road freight with proven reliability across Indian highway conditions.', cap: '7–9.5 MT' },
+              { img: 'assets/images/tata-signa.jpg',            name: 'Heavy Multi-Axle Truck',      desc: '10 to 14-wheel heavy freight carriers built for steel consignments, bulk commodities and industrial freight across national highways.', cap: '16–25 MT' },
+              { img: 'assets/images/tata-signa.jpg',            name: 'Open-Body Flatbed',           desc: 'Open loading platform suited for crane loading of structural steel, pipes, scaffolding and oversized non-weather-sensitive cargo.', cap: '5–20 MT' },
+              { img: 'assets/images/shade-container-truck.jpg', name: 'Closed Container (32ft)',     desc: 'Fully enclosed 32ft containers for safe, weather-protected delivery of household goods, electronics, garments and packaged products.', cap: '8–15 MT' },
+              { img: 'assets/images/shade-container-truck.jpg', name: '40ft ISO Container Trailer',  desc: 'Direct port-to-destination 20ft/40ft ISO container haulage connecting Lucknow to JNPT, Mundra, Kandla, Chennai and all major seaports.', cap: '20–28 MT' },
+              { img: 'assets/images/shade-road.jpg',            name: 'Reefer / Cold Chain',         desc: 'Precision refrigerated trucks maintaining temperatures from -25°C to +15°C for pharmaceuticals, vaccines, dairy and perishable goods.', cap: '-25°C to +15°C' },
+              { img: 'assets/images/shade-road.jpg',            name: 'Tanker Truck',                desc: 'Liquid bulk tankers built to IOCL specifications for safe transport of edible oils, chemicals, water and petroleum products.', cap: '10,000–20,000 L' },
+              { img: 'assets/images/tata-ace.jpg',              name: 'Packers & Movers Van',        desc: 'Professional residential and corporate relocation with 5-layer bubble packing, trained crew, furniture assembly and doorstep unpacking.', cap: 'Full Home Load' },
+              { img: 'assets/images/tata-signa.jpg',            name: 'ODC / Flatbed Trailer',       desc: 'Oversized cargo trailers for heavy industrial machinery, transformers, windmill parts and project cargo with escort vehicles.', cap: 'Up to 50+ MT' },
+              { img: 'assets/images/shade-road.jpg',            name: 'Agricultural Commodity',      desc: 'Bulk agricultural trucks for grain, rice, wheat, sugar, cotton and produce transport from mandis to warehouses and food processing units.', cap: '5–18 MT Bulk' },
             ];
-            const [cs, setCs] = React.useState(0);
-            const total = CAT_SLIDES.length;
+            const [page, setPage] = React.useState(0);
+            const perPage = 3;
+            const totalPages = Math.ceil(FLEET_CARDS.length / perPage);
+
             React.useEffect(() => {
-              const t = setInterval(() => setCs(s => (s + 1) % total), 3000);
+              const t = setInterval(() => setPage(p => (p + 1) % totalPages), 3500);
               return () => clearInterval(t);
-            }, []);
-            const cur = CAT_SLIDES[cs];
+            }, [totalPages]);
+
+            const visible = FLEET_CARDS.slice(page * perPage, page * perPage + perPage);
+            // If last page has less than 3, fill from start
+            const filled = visible.length < perPage
+              ? [...visible, ...FLEET_CARDS.slice(0, perPage - visible.length)]
+              : visible;
+
             return (
-              <div className="cat-slider-wrap">
-                {/* Main Slide */}
-                <div className="cat-slide-main">
-                  <img key={cs} src={cur.img} alt={cur.name} className="cat-slide-img" />
-                  <div className="cat-slide-overlay" style={{ borderTopColor: cur.color }}>
-                    <span className="cat-slide-icon">{cur.icon}</span>
-                    <div>
-                      <span className="cat-slide-num">{String(cs+1).padStart(2,'0')} / {String(total).padStart(2,'0')}</span>
-                      <h3 className="cat-slide-name">{cur.name}</h3>
-                      <span className="cat-slide-model">{cur.model}</span>
-                      <span className="cat-slide-cap" style={{ color: cur.color }}>{cur.cap}</span>
+              <div className="fc-wrap">
+                {/* 3 Cards Row */}
+                <div className="fc-row" key={page}>
+                  {filled.map((card, i) => (
+                    <div className="fc-card" key={i}>
+                      <div className="fc-card-img-wrap">
+                        <img src={card.img} alt={card.name} className="fc-card-img" />
+                        <span className="fc-card-cap">{card.cap}</span>
+                      </div>
+                      <div className="fc-card-body">
+                        <h3 className="fc-card-title">{card.name}</h3>
+                        <p className="fc-card-desc">{card.desc}</p>
+                        <a
+                          href={`https://wa.me/918115137699?text=Hi%20Shade%20Transport%2C%20I%20need%20${encodeURIComponent(card.name)}%20service.`}
+                          target="_blank" rel="noopener noreferrer"
+                          className="fc-card-btn"
+                        >
+                          📞 Call Now
+                        </a>
+                      </div>
                     </div>
-                    <a href={`https://wa.me/918115137699?text=Hi%20Shade%20Transport%2C%20I%20need%20a%20${encodeURIComponent(cur.name)}%20vehicle.`} target="_blank" rel="noopener noreferrer" className="cat-slide-btn">Book Now →</a>
+                  ))}
+                </div>
+
+                {/* Controls */}
+                <div className="fc-controls">
+                  <button className="fc-nav-btn" onClick={() => setPage(p => (p - 1 + totalPages) % totalPages)}>&#8592; Prev</button>
+                  <div className="fc-dots">
+                    {Array.from({ length: totalPages }).map((_, i) => (
+                      <button key={i} className={`fc-dot${i === page ? ' active' : ''}`} onClick={() => setPage(i)} />
+                    ))}
                   </div>
-                  {/* Prev / Next */}
-                  <button className="cat-arrow cat-arrow--l" onClick={() => setCs(s => (s-1+total)%total)}>&#8592;</button>
-                  <button className="cat-arrow cat-arrow--r" onClick={() => setCs(s => (s+1)%total)}>&#8594;</button>
-                </div>
-                {/* Dot strip */}
-                <div className="cat-dots">
-                  {CAT_SLIDES.map((_, i) => (
-                    <button key={i} className={`cat-dot${i===cs?' active':''}`} onClick={() => setCs(i)} style={i===cs?{background:cur.color}:{}} />
-                  ))}
-                </div>
-                {/* Thumbnail strip */}
-                <div className="cat-thumbs">
-                  {CAT_SLIDES.map((s, i) => (
-                    <button key={i} className={`cat-thumb${i===cs?' active':''}`} onClick={() => setCs(i)} style={i===cs?{borderColor:s.color}:{}}>
-                      <span>{s.icon}</span>
-                      <span>{s.name.split(' ').slice(0,2).join(' ')}</span>
-                    </button>
-                  ))}
+                  <button className="fc-nav-btn" onClick={() => setPage(p => (p + 1) % totalPages)}>Next &#8594;</button>
                 </div>
               </div>
             );
